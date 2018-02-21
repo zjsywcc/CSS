@@ -12,7 +12,7 @@ Content Selling System
 
 ## 运行步骤
 
-1. 初始化数据库
+1. init database
 2. cd CSS
 3. mvn clean compile
 4. mvn spring-boot:run
