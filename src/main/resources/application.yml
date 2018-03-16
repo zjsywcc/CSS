@@ -1,0 +1,34 @@
+server:
+  port: ${vcap.application.port:8000}
+  tomcat:
+     uri-encoding: UTF-8
+  session:
+    persistent: false
+
+spring:
+  profiles:
+    active: dev
+  http:
+    encoding:
+      charset: UTF-8 #编码格式
+      enabled: true #http编码
+      force: true #强制编码
+
+# THYMELEAF (ThymeleafAutoConfiguration)
+---
+spring:
+   profiles: dev
+   thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML5
+      encoding: UTF-8
+      content-type: text/html
+      cache: false #false开发用,不用重启服务
+   jpa:
+      generate-ddl: true
+   datasource:
+      url: jdbc:mysql://127.0.0.1:3306/css
+      username: root
+      password: 11235813
+      driverClassName: com.mysql.jdbc.Driver

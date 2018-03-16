@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zn"
+      xmlns:th="http://www.thymeleaf.org">
+<!--页头 start-->
+<head>
+    <div th:replace="common/header::common_header"></div>
+</head>
+
+<body>
+<div th:include="common/navbar::common_navbar"></div>
+<div class="g-doc">
+    <div class="m-tab m-tab-fw m-tab-simple f-cb">
+        <div class="tab">
+            <ul>
+                <li class="z-sel"><a href="/">所有内容</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="n-plist">
+        <ul class="f-cb" id="plist">
+        </ul>
+    </div>
+</div>
+<div th:include="common/foot::common_foot"></div>
+<script type="application/javascript" src="../myjs/sales/sales.js"></script>
+</body>
+</html>

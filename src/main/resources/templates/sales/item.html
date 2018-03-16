@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zn"
+      xmlns:th="http://www.thymeleaf.org">
+<!--页头 start-->
+<head>
+    <div th:replace="common/header::common_header"></div>
+</head>
+<body>
+<div th:include="common/navbar::common_navbar"></div>
+<div class="g-doc">
+    <div class="n-show f-cb" id="showContent">
+        <div class="img"><img src="https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=edca6824a2773912db268361c8188675/9922720e0cf3d7ca600211eff91fbe096a63a9b6.jpg" alt=""/></div>
+        <div class="cnt">
+            <h2>test</h2>
+            <p class="summary">teest</p>
+            <div class="price">
+                <span class="v-unit">¥</span><span class="v-value">5</span>
+            </div>
+            <div class="num">购买数量：<span id="plusNum" class="lessNum"><a>-</a></span><span
+                    class="totalNum" id="allNum">1</span><span id="addNum" class="moreNum"><a>+</a></span>
+            </div>
+            <div class="oprt f-cb">
+                <span class="u-btn u-btn-primary z-dis">已购买</span>
+                <span class="buyprice">当时购买价格：¥5</span>
+            </div>
+        </div>
+    </div>
+    <div class="m-tab m-tab-fw m-tab-simple f-cb">
+        <h2>详细信息</h2>
+    </div>
+    <div class="n-detail">
+        test
+    </div>
+</div>
+<div th:include="common/foot::common_foot"></div>
+<script type="application/javascript" src="../myjs/sales/item.js"></script>
+</body>
+</html>

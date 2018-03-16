@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zn"
+      xmlns:th="http://www.thymeleaf.org">
+<!--页头 start-->
+<head>
+    <div th:replace="common/header::common_header"></div>
+</head>
+<body>
+<div th:include="common/navbar::common_navbar"></div>
+<div class="g-doc">
+    <div class="m-tab m-tab-fw m-tab-simple f-cb">
+        <h2>已购买的内容</h2>
+    </div>
+    <table class="m-table m-table-row n-table g-b3">
+        <colgroup>
+            <col class="img"/>
+            <col/>
+            <col class="time"/>
+            <col/>
+            <col class="num"/>
+            <col/>
+            <col class="price"/>
+            <col/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>内容图片</th>
+            <th>内容名称</th>
+            <th>购买时间</th>
+            <th>购买数量</th>
+            <th>购买价格</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td><a href="/sales/show?id=1"><img src="https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=edca6824a2773912db268361c8188675/9922720e0cf3d7ca600211eff91fbe096a63a9b6.jpg" alt=""/></a></td>
+            <td><h4><a href="/sales/show?id=1">test</a></h4>
+            </td>
+            <td><span class="v-time">2018-2-21 14:32:17</span></td>
+            <td><span class="v-num">1</span></td>
+            <td><span class="v-unit">¥</span><span class="value">5</span></td>
+        </tr>
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">
+                <div class="total">总计：</div>
+            </td>
+            <td><span class="v-unit">¥</span><span class="value">5</span></td>
+        </tr>
+        </tfoot>
+    </table>
+
+</div>
+<div th:include="common/foot::common_foot"></div>
+<script type="application/javascript" src="../myjs/buyer/cart.js"></script>
+</body>
+</html>

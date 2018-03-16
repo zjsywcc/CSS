@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zn"
+      xmlns:th="http://www.thymeleaf.org">
+<!--页头 start-->
+<head>
+    <div th:replace="common/header::common_header"></div>
+</head>
+<body>
+<div th:include="common/navbar::common_navbar"></div>
+<form class="m-form m-form-ht n-login" id="loginForm" onsubmit="return false;" autocomplete="off">
+    <div class="alert-text" id="login_modal" style="display: none">
+        <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>-->
+        <i></i><strong id="login_info"></strong>
+    </div>
+    <div class="fmitem">
+        <label class="fmlab">用户名：</label>
+        <div class="fmipt">
+            <input class="u-ipt" id="username" name="username" autofocus=""/>
+        </div>
+    </div>
+    <div class="fmitem">
+        <label class="fmlab">密码：</label>
+        <div class="fmipt">
+            <input class="u-ipt" id="password" type="password" name="password"/>
+        </div>
+    </div>
+    <div class="fmitem fmitem-nolab fmitem-btn">
+        <div class="fmipt">
+            <button type="submit" class="u-btn u-btn-primary u-btn-lg u-btn-block" onclick="login()">登 录</button>
+        </div>
+    </div>
+</form>
+<div th:include="common/foot::common_foot"></div>
+</body>
+</html>
