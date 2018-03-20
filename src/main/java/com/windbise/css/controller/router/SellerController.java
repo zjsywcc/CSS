@@ -1,4 +1,4 @@
-package com.windbise.css.controller;
+package com.windbise.css.controller.router;
 
 import com.windbise.css.service.UserService;
 import org.slf4j.Logger;
@@ -14,29 +14,20 @@ import javax.servlet.http.HttpSession;
  * Created by wangchengcheng on 2018/3/16.
  */
 @Controller
-@RequestMapping("/buyer")
-public class BuyerController {
+@RequestMapping("/seller")
+public class SellerController {
 
-    Logger logger = LoggerFactory.getLogger(BuyerController.class);
+    Logger logger = LoggerFactory.getLogger(SellerController.class);
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/purchase")
-    public String purchase(HttpSession session, Model model) {
+    @RequestMapping("/publish")
+    public String publish(HttpSession session, Model model) {
         if(session.getAttribute("userModel") != null) {
             Object userModel = session.getAttribute("userModel");
             model.addAttribute("userModel", userModel);
         }
-        return "buyer/purchase";
-    }
-
-    @RequestMapping("/cart")
-    public String cart(HttpSession session, Model model) {
-        if(session.getAttribute("userModel") != null) {
-            Object userModel = session.getAttribute("userModel");
-            model.addAttribute("userModel", userModel);
-        }
-        return "buyer/cart";
+        return "seller/publish";
     }
 }

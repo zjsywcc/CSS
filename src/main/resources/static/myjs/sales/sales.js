@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    // appendGood(1, 'test1', 5, 'https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=edca6824a2773912db268361c8188675/9922720e0cf3d7ca600211eff91fbe096a63a9b6.jpg');
-    // appendGood(2, 'test2', 100, 'https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=8d3a9ea62c7f9e2f6f351b082f31e962/500fd9f9d72a6059099ccd5a2334349b023bbae5.jpg');
-    getItemList();
+    getGoods(0, 100);
 });
 
 function appendGood(good_id, good_title, good_cost, image_url) {
@@ -13,20 +11,24 @@ function appendGood(good_id, good_title, good_cost, image_url) {
     $("[id=plist]").append(good);
 }
 
-function getItemList() {
+function getGoods(index, pageSize) {
     $.ajax({
-        url : "../getItemList",
+        url : "../api/v1/goods",
         dataType : "json",
         type : "POST",
         async : false,
-        data : {},
+        data : {index: index,
+                pageSize: pageSize},
         error : function(error) {
             console.log(error.responseText);
         },
         success : function(e) {
             //
-            if(e.code === 0){
-                for(var item in e.data) {
+            if(e.code === 0) {
+                var itemList = JSON.parse(e.data);
+                console.log(itemList);
+                for(var index in itemList) {
+                    var item = itemList[index];
                     appendGood(item.id, item.title, item.cost, item.photo);
                 }
             }

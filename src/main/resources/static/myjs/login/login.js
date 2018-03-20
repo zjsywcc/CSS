@@ -16,7 +16,7 @@ function login() {
     }
 
     $.ajax({
-        url : "../login",
+        url : "../api/v1/login",
         dataType : "json",
         type : "POST",
         async : false,
@@ -41,7 +41,7 @@ function login() {
 //用户登出
 function logout() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/logout", false);
+    xhr.open("GET", "/api/v1/logout", false);
     xhr.send(null);
     self.location.replace("/");
 }

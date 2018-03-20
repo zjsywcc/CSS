@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface GoodService {
 
-    public List<Good> getGoodListByPage(int index, int pageSize);
+    public List<Good> getGoodsByPage(int index, int pageSize);
+
+    public int addGood(Good good);
 }

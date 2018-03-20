@@ -56,8 +56,8 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/images/**", "anon");
         filterChainDefinitionMap.put("/fonts/**", "anon");
         filterChainDefinitionMap.put("/myjs/**", "anon");
-        //登录验证接口
-        filterChainDefinitionMap.put("/login", "anon");
+        //api接口除了需要用户登录的其他都不需要验证
+        filterChainDefinitionMap.put("/api/v1/**", "anon");
         //注册接口
         filterChainDefinitionMap.put("/**", "authc");
         //filterChainDefinitionMap.put("/**", "anon");

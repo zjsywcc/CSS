@@ -18,8 +18,12 @@ public class GoodServiceImpl implements GoodService {
     private GoodMapper goodMapper;
 
     @Override
-    public List<Good> getGoodListByPage(int index, int pageSize) {
-        return goodMapper.getGoodListByPage(index, pageSize);
+    public List<Good> getGoodsByPage(int index, int pageSize) {
+        return goodMapper.getGoodsByPage(index, pageSize);
     }
 
+    @Override
+    public int addGood(Good good) {
+        return goodMapper.addGood(good);
+    }
 }
