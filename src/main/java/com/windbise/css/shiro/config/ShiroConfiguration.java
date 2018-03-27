@@ -50,6 +50,7 @@ public class ShiroConfiguration {
 
         //首页不需要验证
         filterChainDefinitionMap.put("/", "anon");
+        filterChainDefinitionMap.put("/item", "anon");
         //静态资源文件不需要验证
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/css/**", "anon");

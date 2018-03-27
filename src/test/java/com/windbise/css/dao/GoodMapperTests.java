@@ -1,6 +1,7 @@
 package com.windbise.css.dao;
 
 import com.windbise.css.entity.Good;
+import static com.windbise.css.entity.Good.GoodBuilder;
 import com.windbise.css.mapper.GoodMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 
 
 /**
@@ -25,23 +27,35 @@ public class GoodMapperTests {
 
     public int addGood(int sellerId, int buyerId, String title, String intro, String content, String photo,
                         int cost, long createTime, int soldNum, boolean deleted) throws Exception {
-        Good good = new Good();
-        good.setSellerId(sellerId);
-        good.setContent(content);
-        good.setBuyerId(buyerId);
-        good.setCost(cost);
-        good.setCreateTime(createTime);
-        good.setDeleted(deleted);
-        good.setIntro(intro);
-        good.setPhoto(photo);
-        good.setSoldNum(soldNum);
-        good.setTitle(title);
-        int id = goodMapper.addGood(good);
-        return id;
+        Good good = new GoodBuilder().setSellerId(sellerId)
+                .setBuyerId(buyerId)
+                .setTitle(title)
+                .setIntro(intro)
+                .setContent(content)
+                .setCost(cost)
+                .setCreateTime(createTime)
+                .setDeleted(deleted)
+                .setPhoto(photo)
+                .setSoldNum(soldNum)
+                .build();
+        goodMapper.addGood(good);
+        return good.getId();
+    }
+
+    public int editGood(Good good) {
+        return goodMapper.editGood(good);
+    }
+
+    public int deleteGood(Good good) {
+        return goodMapper.deleteGoodById(good);
     }
 
     public Good findGood(int id) {
         return goodMapper.findGoodById(id);
+    }
+
+    public List<Good> findGoods() {
+        return goodMapper.getGoodsByPage(0, 100);
     }
 
     @Test
@@ -50,7 +64,11 @@ public class GoodMapperTests {
         int id = addGood(3, -1, "testTitle11", "testIntro", "testContent", "https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=8d3a9ea62c7f9e2f6f351b082f31e962/500fd9f9d72a6059099ccd5a2334349b023bbae5.jpg",
                 100, 1521210593, 0, false);
         Good good = findGood(id);
-        Assert.assertEquals(1521210593, good.getCreateTime());
+        System.out.println(id);
+        good.setContent("edit");
+        int row = editGood(good);
+        Assert.assertEquals(1, row);
+//        Assert.assertEquals(2, findGoods().size());
     }
 
 }

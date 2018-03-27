@@ -14,21 +14,20 @@ public interface GoodMapper {
     @Select("SELECT * FROM GOOD WHERE ID = #{id}")
     Good findGoodById(@Param("id") int id);
 
-    @Select("SELECT * FROM GOOD LIMIT #{index}, #{pageSize}")
+    @Select("SELECT * FROM GOOD WHERE DELETED = 0 LIMIT #{index}, #{pageSize} ")
     List<Good> getGoodsByPage(@Param("index") int index, @Param("pageSize") int pageSize);
 
-//    @Insert("INSERT INTO GOOD(SELLER_ID, BUYER_ID, TITLE, INTRO, CONTENT, PHOTO, COST, CREATE_TIME, SOLD_NUM, DELETED) " +
-//            "VALUES(#{sellerId}, #{buyerId}, #{title}, #{intro}, #{content}, #{photo}, #{cost}, #{createTime}, #{soldNum}, #{deleted})")
-//    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
-//    int addGood(@Param("sellerId") int sellerId, @Param("buyerId") int buyerId, @Param("title") String title, @Param("intro") String intro,
-//               @Param("content") String content, @Param("photo") String photo, @Param("cost") int cost, @Param("createTime") long createTime,
-//               @Param("soldNum") int soldNum, @Param("deleted") boolean deleted);
 
     @Insert("INSERT INTO GOOD(SELLER_ID, BUYER_ID, TITLE, INTRO, CONTENT, PHOTO, COST, CREATE_TIME, SOLD_NUM, DELETED) " +
             "VALUES(#{sellerId}, #{buyerId}, #{title}, #{intro}, #{content}, #{photo}, #{cost}, #{createTime}, #{soldNum}, #{deleted})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     int addGood(Good good);
 
-    @Delete("DELETE FROM GOOD WHERE ID = #{id}")
-    int deleteGoodById(@Param("id") int id);
+    @Update("UPDATE GOOD SET TITLE = #{title}, SELLER_ID = #{sellerId}, BUYER_ID = #{buyerId}, INTRO = #{intro}, CONTENT = #{content}, " +
+            "PHOTO = #{photo}, COST = #{cost}, CREATE_TIME = #{createTime}, SOLD_NUM = #{soldNum}, DELETED = #{deleted} " +
+            "WHERE ID = #{id}")
+    int editGood(Good good);
+
+    @Update("UPDATE GOOD SET DELETED = 1 WHERE ID = #{id}")
+    int deleteGoodById(Good good);
 }

@@ -26,8 +26,16 @@ public class ApiSalesController {
     @RequestMapping(value = "/v1/goods", method = RequestMethod.POST)
     @ResponseBody
     public String goods(@RequestParam(value = "index") int index,
-                              @RequestParam(value = "pageSize") int pageSize) {
+                        @RequestParam(value = "pageSize") int pageSize) {
         List<Good> goods = goodService.getGoodsByPage(index, pageSize);
         return ReturnData.result(0, "获取商品列表成功", JSON.toJSONString(goods));
     }
+
+    @RequestMapping(value = "/v1/good/details", method = RequestMethod.POST)
+    @ResponseBody
+    public String details(@RequestParam(value = "goodId") int goodId) {
+        Good good = goodService.getGoodById(goodId);
+        return ReturnData.result(0, "获取商品详细信息成功", JSON.toJSONString(good));
+    }
+
 }

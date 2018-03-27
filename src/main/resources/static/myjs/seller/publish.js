@@ -3,7 +3,7 @@ $(document).ready(function(){
     $("#publish_modal").hide();
     $('#photoURI').on('input propertychange', function() {
         var value = $('#photoURI').val();
-        if (value != '') {
+        if (value !== '') {
             $("#imgpre").attr("src",value);
         }
     });

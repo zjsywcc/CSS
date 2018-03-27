@@ -5,10 +5,12 @@ package com.windbise.css.entity;
  */
 public class User {
 
+    // -1为guest
     private int id;
     private String username;
     private String nickname;
     private String password;
+    // true为买家 false为卖家
     private boolean type;
 
     public int getId() {

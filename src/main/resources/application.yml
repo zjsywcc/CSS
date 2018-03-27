@@ -33,6 +33,7 @@ spring:
       password: 11235813
       driverClassName: com.mysql.jdbc.Driver
 
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

@@ -24,7 +24,7 @@ public class BuyerController {
 
     @RequestMapping("/purchase")
     public String purchase(HttpSession session, Model model) {
-        if(session.getAttribute("userModel") != null) {
+        if(session != null && session.getAttribute("userModel") != null) {
             Object userModel = session.getAttribute("userModel");
             model.addAttribute("userModel", userModel);
         }
@@ -33,7 +33,7 @@ public class BuyerController {
 
     @RequestMapping("/cart")
     public String cart(HttpSession session, Model model) {
-        if(session.getAttribute("userModel") != null) {
+        if(session != null && session.getAttribute("userModel") != null) {
             Object userModel = session.getAttribute("userModel");
             model.addAttribute("userModel", userModel);
         }

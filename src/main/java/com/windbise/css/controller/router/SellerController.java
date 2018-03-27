@@ -24,10 +24,19 @@ public class SellerController {
 
     @RequestMapping("/publish")
     public String publish(HttpSession session, Model model) {
-        if(session.getAttribute("userModel") != null) {
+        if(session != null && session.getAttribute("userModel") != null) {
             Object userModel = session.getAttribute("userModel");
             model.addAttribute("userModel", userModel);
         }
         return "seller/publish";
+    }
+
+    @RequestMapping("/edit")
+    public String edit(HttpSession session, Model model) {
+        if(session != null && session.getAttribute("userModel") != null) {
+            Object userModel = session.getAttribute("userModel");
+            model.addAttribute("userModel", userModel);
+        }
+        return "seller/edit";
     }
 }

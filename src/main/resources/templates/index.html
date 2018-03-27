@@ -12,7 +12,15 @@
     <div class="m-tab m-tab-fw m-tab-simple f-cb">
         <div class="tab">
             <ul>
-                <li class="z-sel"><a href="/">所有内容</a></li>
+                <shiro:user>
+                    <li th:if="${all == true}" class="z-sel"><a href="/">所有内容</a></li>
+                    <li th:if="${all == false}"><a href="/">所有内容</a></li>
+                    <li class="z-sel" th:if="${userModel.type == true and all == false}"><a href="/?all=false">未购买的内容</a></li>
+                    <li th:if="${userModel.type == true and all == true}"><a href="/?all=false">未购买的内容</a></li>
+                </shiro:user>
+                <shiro:guest>
+                    <li class="z-sel"><a href="/">所有内容</a></li>
+                </shiro:guest>
             </ul>
         </div>
     </div>
@@ -23,5 +31,7 @@
 </div>
 <div th:include="common/foot::common_foot"></div>
 <script type="application/javascript" src="../myjs/sales/sales.js"></script>
+<script type="application/javascript" src="../myjs/global.js"></script>
+<script type="application/javascript" src="../myjs/deleteGood.js"></script>
 </body>
 </html>

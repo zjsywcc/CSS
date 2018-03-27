@@ -23,7 +23,23 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
+    public Good getGoodById(int goodId) {
+        return goodMapper.findGoodById(goodId);
+    }
+
+    @Override
     public int addGood(Good good) {
         return goodMapper.addGood(good);
+    }
+
+    @Override
+    public int editGood(Good good) {
+        return goodMapper.editGood(good);
+    }
+
+    @Override
+    public int deleteGood(int id) {
+        Good good = getGoodById(id);
+        return goodMapper.deleteGoodById(good);
     }
 }
