@@ -1,9 +1,9 @@
 var userType;
 $(document).ready(function () {
     userType = getUserType();
-    console.log("userType: ", userType);
-    getGoods(0, 100);
-
+    var all;
+    getUrlParam("all") === null ? all = true : all = false;
+    getGoods(all);
 });
 
 function appendGood(good_id, good_title, good_cost, image_url, sold_num) {
@@ -25,15 +25,14 @@ function appendGood(good_id, good_title, good_cost, image_url, sold_num) {
     $("[id=plist]").append(good);
 }
 
-function getGoods(index, pageSize) {
+function getGoods(all) {
     $.ajax({
         url: "../api/v1/goods",
         dataType: "json",
         type: "POST",
         async: false,
         data: {
-            index: index,
-            pageSize: pageSize
+            all: all
         },
         error: function (error) {
             console.log(error.responseText);
@@ -89,4 +88,14 @@ function getUserType() {
         }
     });
     return type;
+}
+
+//获取url中的参数
+function getUrlParam(name) {
+    //构造一个含有目标参数的正则表达式对象
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    //匹配目标参数
+    var r = window.location.search.substr(1).match(reg);
+//返回参数值
+    if (r != null) return unescape(r[2]); return null;
 }

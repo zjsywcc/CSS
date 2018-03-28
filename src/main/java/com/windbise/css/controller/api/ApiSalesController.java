@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.windbise.css.entity.Good;
 import com.windbise.css.service.GoodService;
 import com.windbise.css.util.ReturnData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,14 +22,20 @@ import java.util.List;
 @RequestMapping("/api")
 public class ApiSalesController {
 
+    Logger logger = LoggerFactory.getLogger(ApiSalesController.class);
+
     @Autowired
     private GoodService goodService;
 
     @RequestMapping(value = "/v1/goods", method = RequestMethod.POST)
     @ResponseBody
-    public String goods(@RequestParam(value = "index") int index,
-                        @RequestParam(value = "pageSize") int pageSize) {
-        List<Good> goods = goodService.getGoodsByPage(index, pageSize);
+    public String goods(@RequestParam(value = "all") boolean all) {
+        List<Good> goods = null;
+        if (all) {
+            goods = goodService.getGoods();
+        } else {
+            goods = goodService.getGoodsUnbought();
+        }
         return ReturnData.result(0, "获取商品列表成功", JSON.toJSONString(goods));
     }
 

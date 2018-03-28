@@ -1,7 +1,7 @@
 package com.windbise.css.controller.api;
 
 import com.windbise.css.entity.Good;
-import static com.windbise.css.entity.Good.GoodBuilder;
+import com.windbise.css.entity.Good.GoodBuilder;
 import com.windbise.css.entity.User;
 import com.windbise.css.service.GoodService;
 import com.windbise.css.service.UserService;

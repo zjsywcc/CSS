@@ -1,5 +1,6 @@
 package com.windbise.css.mapper;
 
+import com.windbise.css.entity.Cart;
 import com.windbise.css.entity.Good;
 import org.apache.ibatis.annotations.*;
 
@@ -12,7 +13,13 @@ import java.util.List;
 public interface GoodMapper {
 
     @Select("SELECT * FROM GOOD WHERE ID = #{id}")
-    Good findGoodById(@Param("id") int id);
+    Good getGoodById(@Param("id") int id);
+
+    @Select("SELECT * FROM GOOD WHERE DELETED = 0 ")
+    List<Good> getGoods();
+
+    @Select("SELECT * FROM GOOD WHERE DELETED = 0 and SOLD_NUM = 0")
+    List<Good> getGoodsUnbought();
 
     @Select("SELECT * FROM GOOD WHERE DELETED = 0 LIMIT #{index}, #{pageSize} ")
     List<Good> getGoodsByPage(@Param("index") int index, @Param("pageSize") int pageSize);
@@ -30,4 +37,5 @@ public interface GoodMapper {
 
     @Update("UPDATE GOOD SET DELETED = 1 WHERE ID = #{id}")
     int deleteGoodById(Good good);
+
 }

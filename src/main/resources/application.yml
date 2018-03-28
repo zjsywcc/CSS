@@ -28,7 +28,7 @@ spring:
    jpa:
       generate-ddl: true
    datasource:
-      url: jdbc:mysql://127.0.0.1:3306/css
+      url: jdbc:mysql://127.0.0.1:3306/css?allowMultiQueries=true&?useAffectedRows=true
       username: root
       password: 11235813
       driverClassName: com.mysql.jdbc.Driver

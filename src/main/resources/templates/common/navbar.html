@@ -19,7 +19,7 @@
                 <ul class="nav">
                 <li><a href="/">首页</a></li>
                 <li th:if="${userModel.type == false}"><a href="/seller/publish">发布</a></li>
-                <li th:if="${userModel.type == true}"><a href="/buyer/purchase">账务</a></li>
+                <li th:if="${userModel.type == true}"><a href="/buyer/purchases">账务</a></li>
                 <li th:if="${userModel.type == true}"><a href="/buyer/cart">购物车</a></li>
                 </ul>
             </shiro:user>

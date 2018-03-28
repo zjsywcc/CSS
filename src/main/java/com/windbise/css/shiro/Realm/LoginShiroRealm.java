@@ -61,7 +61,7 @@ public class LoginShiroRealm extends AuthorizingRealm {
         Subject currentUser = SecurityUtils.getSubject();
 
         //设定userid都权限组中
-        currentUser.getSession().setAttribute("user_id", user.getId());
+//        currentUser.getSession().setAttribute("user_id", user.getId());
 
        /*
         * 获取权限信息:这里没有进行实现，

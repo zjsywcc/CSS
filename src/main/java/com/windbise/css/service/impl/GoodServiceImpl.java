@@ -1,5 +1,6 @@
 package com.windbise.css.service.impl;
 
+import com.windbise.css.entity.Cart;
 import com.windbise.css.entity.Good;
 import com.windbise.css.mapper.GoodMapper;
 import com.windbise.css.service.GoodService;
@@ -18,13 +19,23 @@ public class GoodServiceImpl implements GoodService {
     private GoodMapper goodMapper;
 
     @Override
+    public List<Good> getGoods() {
+        return goodMapper.getGoods();
+    }
+
+    @Override
+    public List<Good> getGoodsUnbought() {
+        return goodMapper.getGoodsUnbought();
+    }
+
+    @Override
     public List<Good> getGoodsByPage(int index, int pageSize) {
         return goodMapper.getGoodsByPage(index, pageSize);
     }
 
     @Override
     public Good getGoodById(int goodId) {
-        return goodMapper.findGoodById(goodId);
+        return goodMapper.getGoodById(goodId);
     }
 
     @Override
@@ -41,5 +52,18 @@ public class GoodServiceImpl implements GoodService {
     public int deleteGood(int id) {
         Good good = getGoodById(id);
         return goodMapper.deleteGoodById(good);
+    }
+
+    @Override
+    public int soldGood(List<Cart> carts) {
+        int rows = 0;
+        for(Cart cart : carts) {
+            int goodId = cart.getGoodId();
+            int soldNum = cart.getGoodNum();
+            Good good = goodMapper.getGoodById(goodId);
+            good.setSoldNum(soldNum);
+            rows += goodMapper.editGood(good);
+        }
+        return rows;
     }
 }

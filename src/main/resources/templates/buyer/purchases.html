@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zn"
+      xmlns:th="http://www.thymeleaf.org">
+<!--页头 start-->
+<head>
+    <div th:replace="common/header::common_header"></div>
+</head>
+<body>
+<div th:include="common/navbar::common_navbar"></div>
+<div class="g-doc">
+    <div class="m-tab m-tab-fw m-tab-simple f-cb">
+        <h2>已购买的内容</h2>
+    </div>
+    <table id="purchaseHistory" class="m-table m-table-row n-table g-b3">
+        <colgroup>
+            <col class="img"/>
+            <col/>
+            <col class="time"/>
+            <col/>
+            <col class="num"/>
+            <col/>
+            <col class="price"/>
+            <col/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>内容图片</th>
+            <th>内容名称</th>
+            <th>购买时间</th>
+            <th>购买数量</th>
+            <th>购买价格</th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+<div th:include="common/foot::common_foot"></div>
+<script type="application/javascript" src="../myjs/global.js"></script>
+<script type="application/javascript" src="../myjs/buyer/purchases.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.windbise.css.dao;
 
 import com.windbise.css.entity.Good;
-import static com.windbise.css.entity.Good.GoodBuilder;
+import com.windbise.css.entity.Good.GoodBuilder;
 import com.windbise.css.mapper.GoodMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -51,11 +51,11 @@ public class GoodMapperTests {
     }
 
     public Good findGood(int id) {
-        return goodMapper.findGoodById(id);
+        return goodMapper.getGoodById(id);
     }
 
     public List<Good> findGoods() {
-        return goodMapper.getGoodsByPage(0, 100);
+        return goodMapper.getGoods();
     }
 
     @Test

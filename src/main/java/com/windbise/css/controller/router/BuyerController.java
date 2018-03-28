@@ -22,18 +22,18 @@ public class BuyerController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/purchase")
+    @RequestMapping("/purchases")
     public String purchase(HttpSession session, Model model) {
-        if(session != null && session.getAttribute("userModel") != null) {
+        if(session.getAttribute("userModel") != null) {
             Object userModel = session.getAttribute("userModel");
             model.addAttribute("userModel", userModel);
         }
-        return "buyer/purchase";
+        return "buyer/purchases";
     }
 
     @RequestMapping("/cart")
     public String cart(HttpSession session, Model model) {
-        if(session != null && session.getAttribute("userModel") != null) {
+        if(session.getAttribute("userModel") != null) {
             Object userModel = session.getAttribute("userModel");
             model.addAttribute("userModel", userModel);
         }

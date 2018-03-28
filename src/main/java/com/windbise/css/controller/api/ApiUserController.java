@@ -1,7 +1,6 @@
 package com.windbise.css.controller.api;
 
 import com.alibaba.fastjson.JSON;
-import com.windbise.css.controller.router.HomeController;
 import com.windbise.css.entity.User;
 import com.windbise.css.service.UserService;
 import com.windbise.css.util.ReturnData;
@@ -27,7 +26,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api")
 public class ApiUserController {
 
-    Logger logger = LoggerFactory.getLogger(HomeController.class);
+    Logger logger = LoggerFactory.getLogger(ApiUserController.class);
 
     @Autowired
     private UserService userService;
@@ -96,7 +95,8 @@ public class ApiUserController {
 
     @RequestMapping("/v1/logout")
     @ResponseBody
-    public void logout(HttpSession session) {
-        session.invalidate();
+    public void logout() {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
     }
 }
