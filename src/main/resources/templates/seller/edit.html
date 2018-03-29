@@ -12,22 +12,21 @@
         <h2>内容编辑</h2>
     </div>
     <div class="n-public">
-        <form class="m-form m-form-ht" id="form" method="post"  onsubmit="return false;" autocomplete="off">
-            <div class="alert-text" id="edit_modal" style="display: none">
+        <form class="m-form m-form-ht" id="form" method="post" onsubmit="return false;" autocomplete="off">
+            <div class="alert-text" id="publish_modal" style="display: none">
                 <!-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>-->
-                <i></i><strong id="edit_info"></strong>
+                <i></i><strong id="publish_info"></strong>
             </div>
             <div class="fmitem">
                 <label class="fmlab">标题：</label>
                 <div class="fmipt">
-                    <input id="goodId" type="hidden" name="id" value=""/>
-                    <input id="goodTitle" class="u-ipt ipt" name="title" value="" placeholder="2-80字符"/>
+                    <input class="u-ipt ipt" id="title" name="title" autofocus="autofocus" placeholder="2-80字符"/>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">摘要：</label>
                 <div class="fmipt">
-                    <input id="goodIntro" class="u-ipt ipt" name="summary" value="" placeholder="2-140字符"/>
+                    <input class="u-ipt ipt" id="intro" name="intro" placeholder="2-140字符"/>
                 </div>
             </div>
             <div class="fmitem">
@@ -40,23 +39,23 @@
             <div class="fmitem">
                 <label class="fmlab"></label>
                 <div class="fmipt" id="urlUpload">
-                    <input id="goodPhoto" class="u-ipt ipt"  name="image" value="" placeholder="图片地址"/>
+                    <input id="photoURI" class="u-ipt ipt"  name="image" placeholder="图片地址"/>
                 </div>
                 <div class="fmipt" id="fileUpload"  style="display:none">
                     <input class="u-ipt ipt" name="file" type="file" id="fileUp"/>
-                    <button class="u-btn u-btn-primary" id="upload">上传</button>
+                    <button class="u-btn u-btn-primary" id="upload" onclick="uploadPhoto()">上传</button>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">正文：</label>
                 <div class="fmipt">
-                    <textarea id="goodContent" class="u-ipt" name="detail" rows="10" placeholder="2-1000个字符"></textarea>
+                    <textarea id="content" class="u-ipt" name="detail" rows="10" placeholder="2-1000个字符"></textarea>
                 </div>
             </div>
             <div class="fmitem">
                 <label class="fmlab">价格：</label>
                 <div class="fmipt">
-                    <input id="goodPrice" class="u-ipt price" name="price" value=""/>元
+                    <input id="price" class="u-ipt price" name="price"/>元
                 </div>
             </div>
             <div class="fmitem fmitem-nolab fmitem-btn">
@@ -69,7 +68,7 @@
     </div>
 </div>
 <div th:include="common/foot::common_foot"></div>
-<script type="application/javascript" src="../myjs/seller/edit.js"></script>
 <script type="application/javascript" src="../myjs/global.js"></script>
+<script type="application/javascript" src="../myjs/seller/edit.js"></script>
 </body>
 </html>

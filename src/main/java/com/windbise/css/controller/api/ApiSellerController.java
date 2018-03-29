@@ -14,8 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+
+import static com.windbise.css.util.Constants.IMAGE_DIR_PATH;
+import static com.windbise.css.util.Constants.IMAGE_PATH_PREFIX;
+import static com.windbise.css.util.Constants.RANDOM;
 
 
 /**
@@ -32,6 +39,27 @@ public class ApiSellerController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping(value = "/v1/seller/upload", headers = ("content-type=multipart/form-data"), method= RequestMethod.POST)
+    @ResponseBody
+    public String upload(@RequestParam("file") MultipartFile multipartFile) {
+        if (multipartFile != null && multipartFile.getSize() > 0) {
+            String originFileName = multipartFile.getOriginalFilename();
+            String fileName = System.currentTimeMillis() + RANDOM.nextInt(100)
+                    + originFileName.substring(originFileName.lastIndexOf("."));
+            try {
+                File file = new File(IMAGE_DIR_PATH + fileName);
+                file = file.getAbsoluteFile();
+                multipartFile.transferTo(file);
+                logger.info("Save file: {}", fileName);
+            } catch (IOException e) {
+                logger.info("Save file error: {}", e.toString());
+                return ReturnData.result(-1, "保存图片失败!", null);
+            }
+            return ReturnData.result(0, "保存图片成功!", IMAGE_PATH_PREFIX + fileName);
+        }
+        return ReturnData.result(-2, "文件为空!", null);
+    }
 
     @RequestMapping(value = "/v1/seller/publish", method= RequestMethod.POST)
     @ResponseBody

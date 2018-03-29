@@ -10,7 +10,7 @@ import java.util.List;
 public class TransactionIdUtil {
 
     public static long getTransactionId(int goodId, int buyerId) {
-        int id = 0;
+        long id = 0;
         int decades = DateTimeUtil.getDecades();
         int month = DateTimeUtil.getMonth();
         int day = DateTimeUtil.getDay();
@@ -23,7 +23,10 @@ public class TransactionIdUtil {
         for(Integer i : timeList) {
             id *= 100;
             id += i;
+            System.out.println(i);
+            System.out.println(id);
         }
         return id;
     }
+
 }
