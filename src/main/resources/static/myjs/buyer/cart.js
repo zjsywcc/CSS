@@ -78,36 +78,36 @@ function listCart() {
 function buy(cartList) {
     var loading = new Loading();
     var layer = new Layer();
-    // layer.reset({
-    //     content: '确认购买吗？',
-    //     onconfirm: function () {
-    //         layer.hide();
-    //         loading.show();
-    $.ajax({
-        url: '../api/v1/buyer/buy',
-        dataType: "json",
-        type: "POST",
-        async: false,
-        data: {
-            cartList: JSON.stringify(cartList)
-        },
-        error: function (error) {
-            console.log(error.responseText);
-        },
-        success: function (e) {
-            if (e.code === 0) {
-                console.log(e.msg);
-                // loading.result('购买成功',function(){
-                location.href = '../buyer/purchases';
-                // });
-            } else {
-                console.log(e.msg);
-                // loading.result(e.msg || '购买失败');
-            }
+    layer.reset({
+        content: '确认购买吗？',
+        onconfirm: function () {
+            layer.hide();
+            loading.show();
+            $.ajax({
+                url: '../api/v1/buyer/buy',
+                dataType: "json",
+                type: "POST",
+                async: false,
+                data: {
+                    cartList: JSON.stringify(cartList)
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                },
+                success: function (e) {
+                    if (e.code === 0) {
+                        console.log(e.msg);
+                        // loading.result('购买成功',function(){
+                        location.href = '../buyer/purchases';
+                        // });
+                    } else {
+                        console.log(e.msg);
+                        // loading.result(e.msg || '购买失败');
+                    }
+                }
+            });
         }
-    });
-    //     }
-    // });
+    }).show();
 
 }
 

@@ -23,8 +23,6 @@ public class TransactionIdUtil {
         for(Integer i : timeList) {
             id *= 100;
             id += i;
-            System.out.println(i);
-            System.out.println(id);
         }
         return id;
     }

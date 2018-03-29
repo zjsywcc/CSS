@@ -52,37 +52,38 @@ function itemDetail() {
 function addToCart() {
     var goodId = getUrlParam("id");
     var goodNum = $("#allNum").text();
-
-    // layer.reset({
-    //     content: '确认加入购物车吗？',
-    //     onconfirm: function () {
-    //         layer.hide();
-    //         loading.show();
-    $.ajax({
-        url: '../api/v1/buyer/addToCart',
-        dataType: "json",
-        type: "POST",
-        async: false,
-        data: {
-            goodId: goodId,
-            goodNum: goodNum
-        },
-        error: function (error) {
-            console.log(error.responseText);
-        },
-        success: function (e) {
-            if (e.code === 0) {
-                // loading.result('添加到购物车成功', function () {
-                console.log(e.msg);
-                location.href = '../buyer/cart';
-                // });
-            } else {
-                // loading.result(e.msg || '添加到购物车失败');
-            }
+    var layer = new Layer();
+    var loading = new Loading();
+    layer.reset({
+        content: '确认加入购物车吗？',
+        onconfirm: function () {
+            layer.hide();
+            loading.show();
+            $.ajax({
+                url: '../api/v1/buyer/addToCart',
+                dataType: "json",
+                type: "POST",
+                async: false,
+                data: {
+                    goodId: goodId,
+                    goodNum: goodNum
+                },
+                error: function (error) {
+                    console.log(error.responseText);
+                },
+                success: function (e) {
+                    if (e.code === 0) {
+                        loading.result('添加到购物车成功', function () {
+                            console.log(e.msg);
+                            location.href = '../buyer/cart';
+                        });
+                    } else {
+                        loading.result(e.msg || '添加到购物车失败');
+                    }
+                }
+            });
         }
-    });
-    //     }
-    // });
+    }).show();
 }
 
 function setDetail(goodDetails) {
@@ -128,3 +129,4 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
+
