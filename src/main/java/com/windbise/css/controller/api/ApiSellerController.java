@@ -51,7 +51,7 @@ public class ApiSellerController {
                 File file = new File(IMAGE_DIR_PATH + fileName);
                 file = file.getAbsoluteFile();
                 multipartFile.transferTo(file);
-                logger.info("Save file: {}", fileName);
+                logger.info("Save file path: {}", file.getAbsolutePath());
             } catch (IOException e) {
                 logger.info("Save file error: {}", e.toString());
                 return ReturnData.result(-1, "保存图片失败!", null);
